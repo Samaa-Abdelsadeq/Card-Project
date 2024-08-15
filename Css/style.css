@@ -1,0 +1,220 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Variables*/
+/* with colors - fonts - etc */
+:root{
+    /* COLORS */
+    --BACKGROUND_COLOR : rgb(31, 29, 67); 
+    --CARDBG_COLOR:rgb(196, 194, 194);
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    background-image: radial-gradient(whitesmoke,rgb(73, 72, 72));
+    min-height: 100vh;
+    display:flex;
+    flex-direction: column;
+}
+main{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    gap:1.5rem;
+}
+header,
+footer{
+    color: whitesmoke;
+    position: sticky;
+    z-index: 2;
+    text-align: center;
+    background-color:  var(--BACKGROUND_COLOR)  ; 
+}
+
+footer{
+    bottom:0;
+}
+header{
+    top:0;
+}
+h1{
+    
+    padding: 0.5em;
+    font-weight: 400;
+    font-size: 200%;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: capitalize;
+}
+footer{
+    background-color: rgb(31, 29, 67); 
+    padding: 0.5em;
+    font-size:150%;
+    font-weight: 100;
+    font-family:sans-serif;
+    text-transform: capitalize;
+}
+.Card{
+    background-color:var(--CARDBG_COLOR) ;
+    border: 2px solid gray;
+    border-radius: 15px;
+    padding: 1em;
+    margin: 10px;
+    scroll-margin-top: 8rem;
+    width: min(100%,325px);
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+} 
+img{
+    display: block;
+    border: 2px gray solid;
+    border-radius: 50%;
+    max-width: 100%;
+    height: auto;
+}
+figcaption{
+    font-size: 200%;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align:center;
+    margin:1rem;
+}
+.Card figcaption::after{
+    content: '🌟';
+    display: block;
+}
+/* .Card figcaption::first-letter{
+    font-size: 3rem;
+} */
+figure{
+    display: flex;
+    flex-flow: column nowrap;
+}
+blockquote{
+    font-size: 150%;
+    position: relative;
+}
+.Card blockquote::before{
+    content: "“";
+    font-size: 1.5em;
+    position: absolute;
+    top: -0.2em;
+    left: -0.5em;
+}
+.Card blockquote::after{
+    content: "”";
+    font-size: 1.5em;
+    position: absolute;
+    top: -0.2em;
+    right: -0.5em;
+}
+.nowrap{
+    white-space: nowrap;
+}
+nav{
+    background-color: aliceblue;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* width: 100%; */
+    padding: 0.5em;
+    font-size: 150%;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a,a:visited {
+    color: black;
+}
+a:hover, a:focus
+{
+    color: hsla(0, 0%, 20%, 0.6);
+
+}
+
+
+@media screen and (min-width:576px) {
+    main{
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+    .Card{
+        width: min(100%,400px);
+    }
+    .Card:last-child{
+        order:-1;
+    }
+    
+}
+@media screen and (min-width:768px) {
+    nav{
+        display: none;
+    }
+    .Card{
+        width: min(100%,325px);
+    }
+    .Card figure{
+        flex-direction: column-reverse;
+    }
+    .Card figcaption{
+        margin:0.1em 0;
+        font-size: 200%;
+    }
+    .Card p{
+        margin-top: 1rem;
+        
+    }
+}
+@media screen and (min-width:992px){
+    .Card{
+        width: min(100%,400px);
+    }
+    .Card:nth-child(2) {
+        order: -1;
+        }
+    }
+@media screen and (min-width: 1200px) {
+        .Card {
+            width: min(33% - 1rem, 500px);
+        }
+}
+/* || MOBILE DEVICE LANDSCAPE  */
+@media screen and (max-height: 425px) and (min-aspect-ratio: 7/4) {
+    h1 {
+        
+        font-size: 2rem;
+    }
+
+    nav {
+        display: none;
+    }
+    main {
+        flex-flow: row nowrap;
+        justify-content: space-evenly;
+        align-items: stretch;
+    }
+
+    .Card {
+        width: min(33% - 1rem, 250px);
+        margin:2px;
+        /* width:50px; */
+    }
+    .img{
+        max-width: 100%;
+    }
+    .Card figcaption,
+    .Card p {
+        font-size: 1.25rem;
+    }
+}
+/* side notes*/
+/*  Remove calc() - min() supports math! */
+/* :is(header,footer,.Card) ====> it has a specifity of 10 not 1 , it takes the highest specificty*/
+/*:where(header,footer,.Card) ====> it has a specifity of 0 zero, can be overrided by any*/
+/* img:not([alt]) ===> the image which doesn't have alt attribute */
